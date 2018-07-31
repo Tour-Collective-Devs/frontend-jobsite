@@ -2,7 +2,7 @@
 
 Tour Collective is a place to find the best of the best the touring community has to offer. By aiming to let crew members reccommend crew members, you can now hire quickly and confidently.
 
-### MVP
+### MVP ######*
 ##### Be able to:
 
 1. post jobs
