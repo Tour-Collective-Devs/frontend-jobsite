@@ -16,3 +16,6 @@ Tour Collective is a place to find the best of the best the touring community ha
 
 1. Private messaging between crew member and employer
 1. Handling monetary transactions
+
+
+###### *vis-à-vis email
