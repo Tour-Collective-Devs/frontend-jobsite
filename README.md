@@ -10,7 +10,6 @@ Tour Collective is a place to find the best of the best the touring community ha
 1. apply with profile that sends an email to employer
 1. handle monetary requirements via third-party
 1. let employers see crew member profiles
-1. 
 
 ### Stretch Goals
 
