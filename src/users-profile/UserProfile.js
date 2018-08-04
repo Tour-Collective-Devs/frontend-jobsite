@@ -20,16 +20,14 @@ class UserProfile extends Component {
     */
 
     renderApplicableProfilePage = () => {
+        const t = this.state.user_type
         // function to render employer or crew profile based on current user
-        switch (this.state.user_type) {
-            case 'crew':
-                return <CrewProfile />
-                break;
-            case 'employer':
-                return <EmployerProfile />
-                break;
-            default:
-                return <ErrorPage />
+        if (t === 'crew') {
+            return <CrewProfile />
+        } else if (t === 'employer') {
+            return <EmployerProfile />
+        } else {
+            return <ErrorPage />
         }
     }
 
