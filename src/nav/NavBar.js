@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+/*
+    module: navbar
+    author: Riley Mathews
+    purpose: to render a navbar to the dom when called. Links used are react router links using the react router dom routing. components called by these routes are defined in ApplicationViews.js
+*/
+
 
 class NavBar extends Component {
 
@@ -25,7 +31,7 @@ class NavBar extends Component {
                         <Link to="/post-job">Post a Job</Link>
                     </li>
                     <li>
-                        <Link to="/Contact">Find a Job</Link>
+                        <Link to="/contact">Find a Job</Link>
                     </li>
                     <li>
                         <Link to="/login">PH login PH</Link>
