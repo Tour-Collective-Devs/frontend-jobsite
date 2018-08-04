@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from "react-router-dom"
+import LandingPage from './home/landingPage';
 
 /*
     module: application views
@@ -13,7 +14,7 @@ class ApplicationViews extends Component {
     render() {
         return (
             <React.Fragment>
-                <Route exact path="/"/>
+                <Route exact path="/" component={LandingPage}/>
                 <Route exact path="/profile"/>
                 <Route exact path="/jobs"/>
                 <Route exact path="/post-job"/>
