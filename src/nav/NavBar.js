@@ -31,7 +31,7 @@ class NavBar extends Component {
                         <Link to="/post-job">Post a Job</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Find a Job</Link>
+                        <Link to="/contact">Contact</Link>
                     </li>
                     <li>
                         <Link to="/login">PH login PH</Link>
