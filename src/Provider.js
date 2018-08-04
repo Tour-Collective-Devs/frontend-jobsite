@@ -18,7 +18,7 @@ export class Provider extends Component {
     component.
     */
     state = {
-        testUser = {
+        testUser: {
             first_name: 'john',
             last_name: 'doe',
             email: 'email@website.com'
