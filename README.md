@@ -46,3 +46,19 @@ The following packages are used in the development of this project.
 
 1. jQuery
 
+## Using Context Provider
+This app uses react context provider to hold data at a level which can be passed over components to exactly where it is needed.
+To use the context provider follow this example code in the component you need to use context data in.
+
+```
+<Context.Consumer>
+    {context => (
+        <div>
+            // grabbing things from context state
+            <h1>{context.state.current_user.first_name}</h1>
+            // calling a function defined in context
+            {context.playUserWelcome()}
+        </div>
+    )}
+</Context.Consumer>
+```
