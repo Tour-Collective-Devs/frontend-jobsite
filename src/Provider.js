@@ -38,10 +38,6 @@ export class Provider extends Component {
     logIn = UserManager.logIn.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
 
-    redirectHome = () => {
-        return <Redirect to='/' />
-    }
-
     redirect = (url) => {
         return <Redirect to={url} />
     }
