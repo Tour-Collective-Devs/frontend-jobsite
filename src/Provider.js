@@ -42,6 +42,10 @@ export class Provider extends Component {
         return <Redirect to='/' />
     }
 
+    redirect = (url) => {
+        return <Redirect to={url} />
+    }
+
 
     /*
         This component will not render any DOM element itself.
@@ -55,7 +59,7 @@ export class Provider extends Component {
                 register: this.register,
                 logIn: this.logIn,
                 isLoggedIn: this.isLoggedIn,
-                redirectHome: this.redirectHome,
+                redirect: this.redirect,
             }}>
                 {this.props.children}
             </Context.Provider>

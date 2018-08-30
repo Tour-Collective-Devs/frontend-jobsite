@@ -34,8 +34,8 @@ class LoginForm extends Component {
                     which will then render the redirectHome method which
                     returns a redirect component to the home page
                 */}
-                {this.props.isLoggedIn() ? this.props.redirectHome() : null}
-                
+                {this.props.isLoggedIn() ? this.props.redirect('/') : null}
+
                 <input type="text" id="login__email" name="email" placeholder="you@website.com" value={this.state.email} onChange={this.updateForm} />
                 <input type="text" id="login__username" name="username" placeholder="Username" value={this.state.username} onChange={this.updateForm} />
                 <input type="password" id="login__password" name="password" placeholder="password" value={this.state.password} onChange={this.updateForm} />

@@ -27,7 +27,18 @@ class RegisterForm extends Component {
         return (
             <React.Fragment>
                 <form onSubmit={this.submitForm}>
-                    {this.props.isLoggedIn() ? this.props.redirectHome() : null}
+                    {/* 
+                        the following code block is used 
+                        redirect the user back to the home page
+                        once they have sucsessfully logged in
+                        after the full registration cycle is completed,
+                        providers state will contain the users auth token
+                        which will make the 'isLoggedIn' method return true
+                        which will then render the redirectHome method which
+                        returns a redirect component to the home page
+                    */}
+                    {this.props.isLoggedIn() ? this.props.redirect('/') : null}
+
                     <input type="text" id="register__first_name" name="first_name" placeholder="First Name" value={this.state.first_name} onChange={this.updateForm} />
                     <input type="text" id="register__last_name" name="last_name" placeholder="Last Name" value={this.state.last_name} onChange={this.updateForm} />
                     <input type="text" id="register__email" name="email" placeholder="you@website.com" value={this.state.email} onChange={this.updateForm} />
