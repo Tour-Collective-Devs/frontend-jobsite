@@ -29,6 +29,12 @@ export class Provider extends Component {
         }
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('token')) {
+            this.setState({userToken: localStorage.getItem('token')})
+        }
+    }
+
     /*  
         bind manager methods here
     */
