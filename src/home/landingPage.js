@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 import SplashImage from '../images/TCSplash.jpg';
 import './landingPage.css';
 
@@ -8,7 +9,7 @@ export default class landingPage extends Component {
     render() {
     return (
         <div>
-            <a href="">Create An Account</a>
+            <Link to='/register'>Create An Account</Link>
             <a href="">Current Jobs</a>
             <h1>Tour Collective Careers</h1>
             <img src={SplashImage} className="splash__image" alt="logo" />

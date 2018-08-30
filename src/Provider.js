@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import UserManager from './managers/UserManager'
 
 /*
     module: context provider
@@ -18,12 +20,35 @@ export class Provider extends Component {
     component.
     */
     state = {
-        testUser: {
-            first_name: 'john',
-            last_name: 'doe',
-            email: 'email@website.com'
+        userToken: "",
+        user: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            username: "",
         }
     }
+
+    componentDidMount() {
+        if (localStorage.getItem('token')) {
+            this.setState({userToken: localStorage.getItem('token')})
+        }
+    }
+
+    /*  
+        bind manager methods here
+    */
+
+    // user manager methods
+    register = UserManager.register.bind(this)
+    logIn = UserManager.logIn.bind(this)
+    logOut = UserManager.logOut.bind(this)
+    isLoggedIn = UserManager.isLoggedIn.bind(this)
+
+    redirect = (url) => {
+        return <Redirect to={url} />
+    }
+
 
     /*
         This component will not render any DOM element itself.
@@ -34,6 +59,11 @@ export class Provider extends Component {
         return (
             <Context.Provider value={{
                 state: this.state,
+                register: this.register,
+                logIn: this.logIn,
+                logOut: this.logOut,
+                isLoggedIn: this.isLoggedIn,
+                redirect: this.redirect,
             }}>
                 {this.props.children}
             </Context.Provider>
