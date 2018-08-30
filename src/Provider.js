@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import UserManager from './managers/UserManager'
 
 /*
     module: context provider
@@ -18,12 +19,21 @@ export class Provider extends Component {
     component.
     */
     state = {
-        testUser: {
-            first_name: 'john',
-            last_name: 'doe',
-            email: 'email@website.com'
+        userToken: "",
+        user: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            username: "",
         }
     }
+
+    /*  
+        bind manager methods here
+    */
+
+    // user manager methods
+    register = UserManager.register.bind(this)
 
     /*
         This component will not render any DOM element itself.
@@ -34,6 +44,7 @@ export class Provider extends Component {
         return (
             <Context.Provider value={{
                 state: this.state,
+                register: this.register,
             }}>
                 {this.props.children}
             </Context.Provider>
