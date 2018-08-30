@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../Provider';
 
 /*
     module: navbar
@@ -13,31 +14,57 @@ class NavBar extends Component {
 
     render() {
         return (
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/profile">My Profile</Link>
-                    </li>
-                    <li>
-                        <a href="https://www.tourcollective.co/" target="blank">My TC</a>
-                    </li>
-                    <li>
-                        <Link to="/jobs">Find a Job</Link>
-                    </li>
-                    <li>
-                        <Link to="/post-job">Post a Job</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact">Contact</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">PH login PH</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Context.Consumer>
+                {context => (
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+
+                            <li>
+                                <a href="https://www.tourcollective.co/" target="blank">My TC</a>
+                            </li>
+                            <li>
+                                <Link to="/jobs">Find a Job</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Contact</Link>
+                            </li>
+                            {/* 
+                                following is blocks only to be rendered 
+                                based on if the user is logged in or not
+                            */}
+                            {
+                                context.isLoggedIn() ?
+                                    /* return these components if they are logged in */
+                                    <React.Fragment>
+                                        <li>
+                                            <Link to="/profile">My Profile</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/post-job">Post a Job</Link>
+                                        </li>
+                                    </React.Fragment>
+
+                                    :
+                                    
+                                    /* or return these if user is not logged in */
+                                    <React.Fragment>
+                                        <li>
+                                            <Link to="/login">login</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/register">Register</Link>
+                                        </li>
+
+                                    </React.Fragment>
+                            }
+
+                        </ul>
+                    </nav>
+                )}
+            </Context.Consumer>
         )
     }
 }

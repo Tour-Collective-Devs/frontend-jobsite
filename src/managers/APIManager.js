@@ -20,8 +20,19 @@ const APIManager = Object.create(null, {
                 }
             })
         }
-    } // end of registerNewUser method
+    }, // end of registerNewUser method
 
+    logInUser: {
+        value: function (userData) {
+            return fetch(`${url}user-auth/login/`, {
+                method: 'POST',
+                body: JSON.stringify(userData),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            })
+        }
+    }
 
 })
 

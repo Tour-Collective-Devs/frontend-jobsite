@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import UserManager from './managers/UserManager'
 
 /*
@@ -34,6 +35,13 @@ export class Provider extends Component {
 
     // user manager methods
     register = UserManager.register.bind(this)
+    logIn = UserManager.logIn.bind(this)
+    isLoggedIn = UserManager.isLoggedIn.bind(this)
+
+    redirectHome = () => {
+        return <Redirect to='/' />
+    }
+
 
     /*
         This component will not render any DOM element itself.
@@ -45,6 +53,9 @@ export class Provider extends Component {
             <Context.Provider value={{
                 state: this.state,
                 register: this.register,
+                logIn: this.logIn,
+                isLoggedIn: this.isLoggedIn,
+                redirectHome: this.redirectHome,
             }}>
                 {this.props.children}
             </Context.Provider>

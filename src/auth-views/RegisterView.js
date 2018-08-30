@@ -15,6 +15,8 @@ class RegisterView extends Component {
                             <h1>Sign up for TCC</h1>
                             <RegisterForm 
                                 register={context.register}
+                                isLoggedIn={context.isLoggedIn}
+                                redirectHome={context.redirectHome}
                             />
                         </React.Fragment>
                     )}

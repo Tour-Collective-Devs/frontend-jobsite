@@ -27,6 +27,7 @@ class RegisterForm extends Component {
         return (
             <React.Fragment>
                 <form onSubmit={this.submitForm}>
+                    {this.props.isLoggedIn() ? this.props.redirectHome() : null}
                     <input type="text" id="register__first_name" name="first_name" placeholder="First Name" value={this.state.first_name} onChange={this.updateForm} />
                     <input type="text" id="register__last_name" name="last_name" placeholder="Last Name" value={this.state.last_name} onChange={this.updateForm} />
                     <input type="text" id="register__email" name="email" placeholder="you@website.com" value={this.state.email} onChange={this.updateForm} />

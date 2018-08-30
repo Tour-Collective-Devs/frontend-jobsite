@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import UserProfile from './users-profile/UserProfile';
 import LandingPage from './home/landingPage';
 import RegisterView from './auth-views/RegisterView';
+import LoginView from './auth-views/LoginView';
 
 /*
     module: application views
@@ -21,7 +22,7 @@ class ApplicationViews extends Component {
                 <Route exact path="/jobs"/>
                 <Route exact path="/post-job"/>
                 <Route exact path="/contact"/>
-                <Route exact path="/login"/>
+                <Route exact path="/login" component={LoginView}/>
                 <Route exact path="/register" component={RegisterView}/>
             </React.Fragment>
         )
