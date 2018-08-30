@@ -45,10 +45,13 @@ class NavBar extends Component {
                                         <li>
                                             <Link to="/post-job">Post a Job</Link>
                                         </li>
+                                        <li>
+                                            <a onClick={context.logOut}>Logout</a>
+                                        </li>
                                     </React.Fragment>
 
                                     :
-                                    
+
                                     /* or return these if user is not logged in */
                                     <React.Fragment>
                                         <li>

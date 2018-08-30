@@ -58,6 +58,20 @@ const UserManager = Object.create(null, {
     },
 
 
+    // method to log the user out
+    logOut: {
+        value: function () {
+            console.log('logging out')
+            APIManager.logOutUser()
+                .then(r => r.json())
+                .then(response => {
+                    this.setState({userToken: ""})
+                    localStorage.removeItem("token")
+                })
+        }
+    },
+
+
     // method to check if the user is logged in
     isLoggedIn: {
         value: function () {

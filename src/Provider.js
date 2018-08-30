@@ -36,6 +36,7 @@ export class Provider extends Component {
     // user manager methods
     register = UserManager.register.bind(this)
     logIn = UserManager.logIn.bind(this)
+    logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
 
     redirect = (url) => {
@@ -54,6 +55,7 @@ export class Provider extends Component {
                 state: this.state,
                 register: this.register,
                 logIn: this.logIn,
+                logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
                 redirect: this.redirect,
             }}>
