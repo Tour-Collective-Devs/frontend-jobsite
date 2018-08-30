@@ -14,7 +14,6 @@ class RegisterForm extends Component {
 
     submitForm = (evt) => {
         evt.preventDefault()
-        console.log('registration started')
         this.props.register(this.state)
     }
 
