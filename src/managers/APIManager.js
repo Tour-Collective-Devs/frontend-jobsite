@@ -53,6 +53,19 @@ const APIManager = Object.create(null, {
         }
     },
 
+    // method to load genre information
+    getGenres: {
+        value: function () {
+            return fetch(`${url}genre/`)
+        }
+    },
+
+    getRoles: {
+        value: function () {
+            return fetch(`${url}role/`)
+        }
+    },
+    
     // method for posting an event
     postEvent: {
         value: function (event) {
