@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import UserManager from './managers/UserManager'
+import EventManager from './managers/EventManager'
 
 /*
     module: context provider
@@ -45,6 +46,9 @@ export class Provider extends Component {
     logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
 
+    // event manager methods
+    createEvent = EventManager.createEvent.bind(this)
+
 
     /*
         This component will not render any DOM element itself.
@@ -54,11 +58,18 @@ export class Provider extends Component {
     render() {
         return (
             <Context.Provider value={{
+                // pass state
                 state: this.state,
+
+                // pass user manager methods
                 register: this.register,
                 logIn: this.logIn,
                 logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
+
+                // pass event manager methods
+                createEvent: this.createEvent,
+
             }}>
                 {this.props.children}
             </Context.Provider>
