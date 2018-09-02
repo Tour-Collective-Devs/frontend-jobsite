@@ -51,6 +51,19 @@ const APIManager = Object.create(null, {
                 headers: this.authHeader
             })
         }
+    },
+
+    // method to load genre information
+    getGenres: {
+        value: function () {
+            return fetch(`${url}genre/`)
+        }
+    },
+
+    getRoles: {
+        value: function () {
+            return fetch(`${url}role/`)
+        }
     }
 
 })

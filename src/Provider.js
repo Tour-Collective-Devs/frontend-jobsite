@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import UserManager from './managers/UserManager'
+import APIManager from './managers/APIManager';
 
 /*
     module: context provider
@@ -26,13 +27,36 @@ export class Provider extends Component {
             last_name: "",
             email: "",
             username: "",
-        }
+        },
+
+        genres: [],
+        roles: []
     }
 
     componentDidMount() {
         if (localStorage.getItem('token')) {
             this.setState({userToken: localStorage.getItem('token')})
         }
+        this.loadGenres()
+        this.loadRoles()
+    }
+
+
+    // method to get genres information loaded into app
+    loadGenres = () => {
+        APIManager.getGenres()
+            .then(r => r.json())
+            .then(response => {
+                this.setState({genres: response})
+            })
+    }
+
+    loadRoles = () => {
+        APIManager.getRoles()
+            .then(r => r.json())
+            .then(response => {
+                this.setState({roles: response})
+            })
     }
 
     /*  
