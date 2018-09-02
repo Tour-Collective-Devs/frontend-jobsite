@@ -1,14 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Context } from '../Provider';
 
 
 class CrewProfile extends Component {
 
 
+
     render() {
         return (
-            <React.Fragment>
-                <h1>This is a crew profile page</h1>
-            </React.Fragment>
+            <Context.Consumer>
+                {currentUser => (
+                    <React.Fragment>
+                        {console.log('currentUser', currentUser)}
+                        <div>This is the crew member profile</div>
+                    </React.Fragment>
+                )}
+            </Context.Consumer>
         )
     }
 }

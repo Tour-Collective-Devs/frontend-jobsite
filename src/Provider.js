@@ -13,13 +13,13 @@ export const Context = React.createContext()
 
 export class Provider extends Component {
 
-    /*
-    The initial state of the data provider should include
-    default values for any top-level component that will
-    need the data. In this case, PoliticianList is my only
-    top-level component. It is not a child of any other
-    component.
-    */
+
+    // The initial state of the data provider should include
+    // default values for any top-level component that will
+    // need the data. In this case, PoliticianList is my only
+    // top-level component. It is not a child of any other
+    // component.
+
     state = {
         userToken: "",
         user: {
@@ -27,16 +27,30 @@ export class Provider extends Component {
             last_name: "",
             email: "",
             username: "",
+            isEmployer: false,
+            isCrew: false
+        },
+        crewMember: {
+            roles: [],
+            city: "",
+            state: "",
+            willTravel: false,
+        },
+        employer: {
+            organization: ""
         },
 
         genres: [],
         roles: []
     }
 
+
     componentDidMount() {
         if (localStorage.getItem('token')) {
             this.setState({userToken: localStorage.getItem('token')})
+            this.loadUserInformation()
         }
+
         this.loadGenres()
         this.loadRoles()
     }
@@ -59,7 +73,7 @@ export class Provider extends Component {
             })
     }
 
-    /*  
+    /*
         bind manager methods here
     */
 
@@ -68,6 +82,8 @@ export class Provider extends Component {
     logIn = UserManager.logIn.bind(this)
     logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
+    loadUserInformation = UserManager.loadUserInformation.bind(this)
+
 
     // event manager methods
     createEvent = EventManager.createEvent.bind(this)
@@ -89,7 +105,8 @@ export class Provider extends Component {
                 logIn: this.logIn,
                 logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
-
+                loadUserInformation: this.loadUserInformation,
+                redirect: this.redirect,
                 // pass event manager methods
                 createEvent: this.createEvent,
 

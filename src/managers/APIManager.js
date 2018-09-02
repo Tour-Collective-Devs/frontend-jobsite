@@ -1,4 +1,4 @@
-/*  
+/*
     module: api manager
     author: riley mathews
     purpose: to handle all calls to the api
@@ -52,20 +52,48 @@ const APIManager = Object.create(null, {
             })
         }
     },
-
+    getUserInformation: {
+        value: function () {
+            return fetch(`${url}user/`, {
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+        }
+    },
+    getCrewInformation: {
+        value: function () {
+            return fetch(`${url}crew_member/`, {
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+        }
+    },
+    getEmployerInformation: {
+        value: function () {
+            return fetch(`${url}employer/`, {
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+        }
+    },
     // method to load genre information
     getGenres: {
         value: function () {
             return fetch(`${url}genre/`)
         }
     },
-
     getRoles: {
         value: function () {
             return fetch(`${url}role/`)
         }
     },
-    
+
     // method for posting an event
     postEvent: {
         value: function (event) {
@@ -73,8 +101,8 @@ const APIManager = Object.create(null, {
                 method: 'POST',
                 headers: {
                     "content-type": "application/json",
-                    'Authorization': `Token ${localStorage.getItem('token')}`, 
-                }, 
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                },
                 body: JSON.stringify(event)
             })
         }
