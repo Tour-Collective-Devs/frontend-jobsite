@@ -6,21 +6,21 @@ class CreateEventForm extends Component {
     state = {
         name: "Awesome Event",
         description: "tour through the midwest",
-        genres: [],
-        role: "Audio Engineer",
+        genres: ["http://127.0.0.1:8000/api/genre/1/"],
+        role: "http://127.0.0.1:8000/api/role/1/",
         start_date: "2012-12-12",
         end_date: "2013-12-12",
         total_pay: 4000,
         show_count: 4,
         required_experience: "3 years",
-        pay_type: "Daily",
+        pay_type: "day",
     }
 
 
     submitForm = (evt) => {
         evt.preventDefault()
         console.log("event form submitted")
-        this.props.createEvent()
+        this.props.createEvent(this.state)
     }
 
     render() {

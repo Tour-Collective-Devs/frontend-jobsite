@@ -1,3 +1,5 @@
+import APIManager from "./APIManager";
+
 /*  
     module: event manager
     author: riley mathews
@@ -7,8 +9,13 @@
 const EventManager = Object.create(null, {
     
     createEvent: {
-        value: function() {
-            console.log("event created")
+        value: function(event) {
+            console.log("event created", event)
+            APIManager.postEvent(event)
+                .then(r => r.json())
+                .then(response => {
+                    console.log(response)
+                })
         }
     }
 

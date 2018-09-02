@@ -51,6 +51,16 @@ const APIManager = Object.create(null, {
                 headers: this.authHeader
             })
         }
+    },
+
+    // method for posting an event
+    postEvent: {
+        value: function (event) {
+            return fetch(`${url}event/`, {
+                method: 'GET',
+                headers: this.authHeader,
+            })
+        }
     }
 
 })
