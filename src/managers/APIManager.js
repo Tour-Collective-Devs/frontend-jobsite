@@ -12,7 +12,7 @@ const APIManager = Object.create(null, {
     authHeader: {
         value: {
             "content-type": "application/json",
-            "Authorization": `Token: ${localStorage.getItem('token')}`
+            "Authorization": `Token ${localStorage.getItem('token')}`
         }
     },
 
@@ -57,8 +57,12 @@ const APIManager = Object.create(null, {
     postEvent: {
         value: function (event) {
             return fetch(`${url}event/`, {
-                method: 'GET',
-                headers: this.authHeader,
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': `Token ${localStorage.getItem('token')}`, 
+                }, 
+                body: JSON.stringify(event)
             })
         }
     }
