@@ -1,4 +1,4 @@
-/*  
+/*
     module: api manager
     author: riley mathews
     purpose: to handle all calls to the api
@@ -50,6 +50,11 @@ const APIManager = Object.create(null, {
                 method: 'POST',
                 headers: this.authHeader
             })
+        }
+    },
+    getUserProfile: {
+        value: function () {
+            return fetch(`${url}user/`)
         }
     }
 

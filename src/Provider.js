@@ -29,13 +29,14 @@ export class Provider extends Component {
         }
     }
 
+
     componentDidMount() {
         if (localStorage.getItem('token')) {
             this.setState({userToken: localStorage.getItem('token')})
         }
     }
 
-    /*  
+    /*
         bind manager methods here
     */
 
@@ -44,6 +45,7 @@ export class Provider extends Component {
     logIn = UserManager.logIn.bind(this)
     logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
+    displayProfile = UserManager.displayProfile.bind(this)
 
     redirect = (url) => {
         return <Redirect to={url} />
@@ -63,6 +65,7 @@ export class Provider extends Component {
                 logIn: this.logIn,
                 logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
+                displayProfile: this.displayProfile,
                 redirect: this.redirect,
             }}>
                 {this.props.children}

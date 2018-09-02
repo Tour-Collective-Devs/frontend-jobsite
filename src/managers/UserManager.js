@@ -1,6 +1,6 @@
 import APIManager from "./APIManager";
 
-/* 
+/*
     module: user manager
     author: riley mathews
     purpose: to hold methods pertaining to managing user information throughout the application
@@ -77,7 +77,27 @@ const UserManager = Object.create(null, {
         value: function () {
             return this.state.userToken === "" ? false : true
         }
-    }, 
+    },
+    displayProfile: {
+        value: function () {
+            APIManager.getUserProfile()
+            .then(r => r.json())
+            .then(userInfo => {
+                console.log('userlist',userInfo)
+                const user = localStorage.getItem('token')
+                if (userInfo.userToken === user) {
+                    this.setState({
+                        user: {
+                            first_name: `${userInfo.first_name}`,
+                            last_name: `${userInfo.last_name}`,
+                            email: `${userInfo.email}`,
+                            username: `${userInfo.username}`
+                        }
+                    })
+                }
+            })
+        }
+    }
 
 })
 
