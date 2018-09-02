@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import UserManager from './managers/UserManager'
 import EventManager from './managers/EventManager'
 
