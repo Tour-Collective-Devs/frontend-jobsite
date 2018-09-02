@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import RegisterForm from './RegisterForm';
+import CreateEventForm from './CreateEventForm';
 import { Context } from '../Provider';
 
 
-class RegisterView extends Component {
+class CreateEventView extends Component {
 
 
     render() {
@@ -12,10 +12,9 @@ class RegisterView extends Component {
                 <Context.Consumer>
                     {context => (
                         <React.Fragment>
-                            <h1>Sign up for TCC</h1>
-                            <RegisterForm 
-                                register={context.register}
-                                isLoggedIn={context.isLoggedIn}
+                            <h1>Create an Event</h1>
+                            <CreateEventForm 
+                                createEvent={context.createEvent}
                             />
                         </React.Fragment>
                     )}
@@ -25,4 +24,4 @@ class RegisterView extends Component {
     }
 }
 
-export default RegisterView
+export default CreateEventView

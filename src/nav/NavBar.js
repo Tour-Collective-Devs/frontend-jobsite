@@ -43,7 +43,7 @@ class NavBar extends Component {
                                             <Link to="/profile">My Profile</Link>
                                         </li>
                                         <li>
-                                            <Link to="/post-job">Post a Job</Link>
+                                            <Link to="/create-event">Post a Job</Link>
                                         </li>
                                         <li>
                                             <a onClick={context.logOut}>Logout</a>

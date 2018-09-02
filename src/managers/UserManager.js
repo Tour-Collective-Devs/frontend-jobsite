@@ -1,4 +1,5 @@
 import APIManager from "./APIManager";
+import history from '../history'
 
 /*
     module: user manager
@@ -23,6 +24,7 @@ const UserManager = Object.create(null, {
                         // set token in state and local storage to be used in future requests to api
                         this.setState({ userToken: token })
                         localStorage.setItem('token', token)
+                        history.push('/')
                     // else logic to run if response did not contain an auth token
                     } else {
                         // build up error string
@@ -49,6 +51,7 @@ const UserManager = Object.create(null, {
                         console.log(response)
                         this.setState({ userToken: token })
                         localStorage.setItem('token', token)
+                        history.push('/')
                         return true
                     } else {
                         alert("sorry something wen't wrong")

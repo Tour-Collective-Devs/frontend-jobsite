@@ -14,7 +14,6 @@ class LoginView extends Component {
                     {context => (
                         <LoginForm 
                             logIn = {context.logIn}
-                            redirect = {context.redirect}
                             isLoggedIn = {context.isLoggedIn}
                         />
                     )}

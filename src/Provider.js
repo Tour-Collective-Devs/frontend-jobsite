@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import UserManager from './managers/UserManager'
+import APIManager from './managers/APIManager';
+import EventManager from './managers/EventManager'
 
 /*
     module: context provider
@@ -37,7 +38,10 @@ export class Provider extends Component {
         },
         employer: {
             organization: ""
-        }
+        },
+
+        genres: [],
+        roles: []
     }
 
 
@@ -47,6 +51,26 @@ export class Provider extends Component {
             this.loadUserInformation()
         }
 
+        this.loadGenres()
+        this.loadRoles()
+    }
+
+
+    // method to get genres information loaded into app
+    loadGenres = () => {
+        APIManager.getGenres()
+            .then(r => r.json())
+            .then(response => {
+                this.setState({genres: response})
+            })
+    }
+
+    loadRoles = () => {
+        APIManager.getRoles()
+            .then(r => r.json())
+            .then(response => {
+                this.setState({roles: response})
+            })
     }
 
     /*
@@ -61,9 +85,8 @@ export class Provider extends Component {
     loadUserInformation = UserManager.loadUserInformation.bind(this)
 
 
-    redirect = (url) => {
-        return <Redirect to={url} />
-    }
+    // event manager methods
+    createEvent = EventManager.createEvent.bind(this)
 
 
     /*
@@ -74,13 +97,19 @@ export class Provider extends Component {
     render() {
         return (
             <Context.Provider value={{
+                // pass state
                 state: this.state,
+
+                // pass user manager methods
                 register: this.register,
                 logIn: this.logIn,
                 logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
                 loadUserInformation: this.loadUserInformation,
                 redirect: this.redirect,
+                // pass event manager methods
+                createEvent: this.createEvent,
+
             }}>
                 {this.props.children}
             </Context.Provider>
