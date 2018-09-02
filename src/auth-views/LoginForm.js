@@ -24,17 +24,6 @@ class LoginForm extends Component {
     render() {
         return (
             <form onSubmit={this.submitForm}>
-                {/* 
-                    the following code block is used 
-                    redirect the user back to the home page
-                    once they have sucsessfully logged in
-                    after the full registration cycle is completed,
-                    providers state will contain the users auth token
-                    which will make the 'isLoggedIn' method return true
-                    which will then render the redirectHome method which
-                    returns a redirect component to the home page
-                */}
-                {this.props.isLoggedIn() ? this.props.redirect('/') : null}
 
                 <input type="text" id="login__email" name="email" placeholder="you@website.com" value={this.state.email} onChange={this.updateForm} />
                 <input type="text" id="login__username" name="username" placeholder="Username" value={this.state.username} onChange={this.updateForm} />

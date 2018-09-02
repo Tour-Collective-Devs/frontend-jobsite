@@ -45,10 +45,6 @@ export class Provider extends Component {
     logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
 
-    redirect = (url) => {
-        return <Redirect to={url} />
-    }
-
 
     /*
         This component will not render any DOM element itself.
@@ -63,7 +59,6 @@ export class Provider extends Component {
                 logIn: this.logIn,
                 logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
-                redirect: this.redirect,
             }}>
                 {this.props.children}
             </Context.Provider>
