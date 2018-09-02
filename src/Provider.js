@@ -12,13 +12,13 @@ export const Context = React.createContext()
 
 export class Provider extends Component {
 
-    /*
-    The initial state of the data provider should include
-    default values for any top-level component that will
-    need the data. In this case, PoliticianList is my only
-    top-level component. It is not a child of any other
-    component.
-    */
+
+    // The initial state of the data provider should include
+    // default values for any top-level component that will
+    // need the data. In this case, PoliticianList is my only
+    // top-level component. It is not a child of any other
+    // component.
+
     state = {
         userToken: "",
         user: {
@@ -26,6 +26,17 @@ export class Provider extends Component {
             last_name: "",
             email: "",
             username: "",
+            isEmployer: false,
+            isCrew: false
+        },
+        crewMember: {
+            roles: [],
+            city: "",
+            state: "",
+            willTravel: false,
+        },
+        employer: {
+            organization: ""
         }
     }
 
@@ -33,7 +44,9 @@ export class Provider extends Component {
     componentDidMount() {
         if (localStorage.getItem('token')) {
             this.setState({userToken: localStorage.getItem('token')})
+            this.loadUserInformation()
         }
+
     }
 
     /*
@@ -45,7 +58,8 @@ export class Provider extends Component {
     logIn = UserManager.logIn.bind(this)
     logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
-    displayProfile = UserManager.displayProfile.bind(this)
+    loadUserInformation = UserManager.loadUserInformation.bind(this)
+
 
     redirect = (url) => {
         return <Redirect to={url} />
@@ -65,7 +79,7 @@ export class Provider extends Component {
                 logIn: this.logIn,
                 logOut: this.logOut,
                 isLoggedIn: this.isLoggedIn,
-                displayProfile: this.displayProfile,
+                loadUserInformation: this.loadUserInformation,
                 redirect: this.redirect,
             }}>
                 {this.props.children}

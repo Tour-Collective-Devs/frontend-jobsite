@@ -12,7 +12,7 @@ const APIManager = Object.create(null, {
     authHeader: {
         value: {
             "content-type": "application/json",
-            "Authorization": `Token: ${localStorage.getItem('token')}`
+            "Authorization": `Token ${localStorage.getItem('token')}`
         }
     },
 
@@ -52,9 +52,34 @@ const APIManager = Object.create(null, {
             })
         }
     },
-    getUserProfile: {
+    getUserInformation: {
         value: function () {
-            return fetch(`${url}user/`)
+            return fetch(`${url}user/`, {
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+        }
+    },
+    getCrewInformation: {
+        value: function () {
+            return fetch(`${url}crew_member/`, {
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+        }
+    },
+    getEmployerInformation: {
+        value: function () {
+            return fetch(`${url}employer/`, {
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
         }
     }
 

@@ -78,21 +78,54 @@ const UserManager = Object.create(null, {
             return this.state.userToken === "" ? false : true
         }
     },
-    displayProfile: {
+    loadUserInformation: {
         value: function () {
-            APIManager.getUserProfile()
+            APIManager.getUserInformation()
             .then(r => r.json())
             .then(userInfo => {
-                console.log('userlist',userInfo)
-                const user = localStorage.getItem('token')
-                if (userInfo.userToken === user) {
-                    this.setState({
-                        user: {
-                            first_name: `${userInfo.first_name}`,
-                            last_name: `${userInfo.last_name}`,
-                            email: `${userInfo.email}`,
-                            username: `${userInfo.username}`
-                        }
+                const user = userInfo[0]
+                if (user.is_employer) {
+                    APIManager.getEmployerInformation()
+                    .then(r => r.json())
+                    .then(employerInfo => {
+                        const employer = employerInfo[0]
+                        this.setState({
+                                user: {
+                                        first_name: user.first_name,
+                                        last_name: user.last_name,
+                                        email: user.email,
+                                        username: user.username,
+                                        isEmployer: user.is_employer,
+                                        isCrew: user.is_crew_member,
+                                    },
+                                employer: {
+                                        organization: employer.organization_name
+                                }
+                                })
+                    })
+                } else {
+                    APIManager.getCrewInformation()
+                    .then(r => r.json())
+                    .then(crewInfo => {
+                        const crew = crewInfo[0]
+                        console.log('what are you',crew)
+                        this.setState({
+                            user: {
+                                first_name: user.first_name,
+                                last_name: user.last_name,
+                                email: user.email,
+                                username: user.username,
+                                isEmployer: user.is_employer,
+                                isCrew: user.is_crew_member,
+                            },
+                            crewMember: {
+                                roles: crew.roles,
+                                city: crew.city,
+                                state: crew.state,
+                                willTravel: crew.will_travel
+                            }
+
+                        })
                     })
                 }
             })

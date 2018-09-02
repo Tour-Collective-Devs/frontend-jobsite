@@ -11,9 +11,8 @@ class CrewProfile extends Component {
             <Context.Consumer>
                 {currentUser => (
                     <React.Fragment>
-                        {console.log(currentUser.displayProfile())}
-                        {console.log('state', currentUser.state)}
-                        <h1>This is a crew profile page</h1>
+                        {console.log('currentUser', currentUser)}
+                        <div>This is the crew member profile</div>
                     </React.Fragment>
                 )}
             </Context.Consumer>
