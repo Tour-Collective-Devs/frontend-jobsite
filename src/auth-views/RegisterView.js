@@ -16,7 +16,6 @@ class RegisterView extends Component {
                             <RegisterForm 
                                 register={context.register}
                                 isLoggedIn={context.isLoggedIn}
-                                redirect={context.redirect}
                             />
                         </React.Fragment>
                     )}

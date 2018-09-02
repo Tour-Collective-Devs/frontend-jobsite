@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import UserManager from './managers/UserManager'
 import EventManager from './managers/EventManager'
 
@@ -49,10 +48,6 @@ export class Provider extends Component {
     // event manager methods
     createEvent = EventManager.createEvent.bind(this)
 
-    redirect = (url) => {
-        return <Redirect to={url} />
-    }
-
 
     /*
         This component will not render any DOM element itself.
@@ -74,8 +69,6 @@ export class Provider extends Component {
                 // pass event manager methods
                 createEvent: this.createEvent,
 
-                // other methods
-                redirect: this.redirect,
             }}>
                 {this.props.children}
             </Context.Provider>
