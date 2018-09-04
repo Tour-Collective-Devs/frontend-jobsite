@@ -14,7 +14,17 @@ const UserManager = Object.create(null, {
     register: {
         value: function (userToRegister) {
             // pass user object onto api manager
-            APIManager.registerNewUser(userToRegister)
+            const userObj = {
+                first_name: userToRegister.first_name,
+                last_name: userToRegister.last_name,
+                email: userToRegister.email,
+                password1: userToRegister.password1,
+                password2: userToRegister.password2,
+                username: userToRegister.username,
+                is_employer: userToRegister.is_employer,
+                is_crew_member: userToRegister.is_crew_member,
+            }
+            APIManager.registerNewUser(userObj)
                 .then(r => r.json())
                 .then(response => {
                     // check to see if response is the key, indicated a sucsessful registration
@@ -24,6 +34,28 @@ const UserManager = Object.create(null, {
                         // set token in state and local storage to be used in future requests to api
                         this.setState({ userToken: token })
                         localStorage.setItem('token', token)
+                        // set user profile type based on what profile they are creating
+                        const userProfileType = userObj.is_crew_member ? "crew_member" : "employer"
+
+                        // create user profile data based on what type of user they are creating
+                        const userProfileData = userObj.is_crew_member ? {
+                            city: userToRegister.city,
+                            state: userToRegister.state,
+                            will_travel: userToRegister.will_travel,
+                        } : {
+                            organization_name: userToRegister.organization_name
+                        }
+
+
+                        APIManager.createUsersProfile(userProfileData, userProfileType)
+                            .then(r => r.json())
+                            .then(response => {
+                                console.log(response)
+                                this.setUserState(response.user)
+                                delete response.user
+                                console.log(response)
+                                this.setProfileState(userProfileType, response)
+                            })
                         history.push('/')
                     // else logic to run if response did not contain an auth token
                     } else {
@@ -51,6 +83,7 @@ const UserManager = Object.create(null, {
                         console.log(response)
                         this.setState({ userToken: token })
                         localStorage.setItem('token', token)
+                        this.loadUserInformation()
                         history.push('/')
                         return true
                     } else {
@@ -68,8 +101,7 @@ const UserManager = Object.create(null, {
             APIManager.logOutUser()
                 .then(r => r.json())
                 .then(response => {
-                    this.setState({userToken: ""})
-                    localStorage.removeItem("token")
+                    this.clearUserInformation()
                 })
         }
     },
@@ -81,56 +113,71 @@ const UserManager = Object.create(null, {
             return this.state.userToken === "" ? false : true
         }
     },
+
+    // method to load user information
     loadUserInformation: {
         value: function () {
             APIManager.getUserInformation()
             .then(r => r.json())
             .then(userInfo => {
                 const user = userInfo[0]
+                this.setUserState(user)
                 if (user.is_employer) {
                     APIManager.getEmployerInformation()
                     .then(r => r.json())
                     .then(employerInfo => {
                         const employer = employerInfo[0]
-                        this.setState({
-                                user: {
-                                        first_name: user.first_name,
-                                        last_name: user.last_name,
-                                        email: user.email,
-                                        username: user.username,
-                                        isEmployer: user.is_employer,
-                                        isCrew: user.is_crew_member,
-                                    },
-                                employer: {
-                                        organization: employer.organization_name
-                                }
-                                })
+                        this.setProfileState(employer, 'employer')
                     })
                 } else {
                     APIManager.getCrewInformation()
                     .then(r => r.json())
                     .then(crewInfo => {
                         const crew = crewInfo[0]
-                        console.log('what are you',crew)
-                        this.setState({
-                            user: {
-                                first_name: user.first_name,
-                                last_name: user.last_name,
-                                email: user.email,
-                                username: user.username,
-                                isEmployer: user.is_employer,
-                                isCrew: user.is_crew_member,
-                            },
-                            crewMember: {
-                                roles: crew.roles,
-                                city: crew.city,
-                                state: crew.state,
-                                willTravel: crew.will_travel
-                            }
-
-                        })
+                        this.setProfileState(crew, 'crew_member')
                     })
                 }
+            })
+        }
+    },
+
+    // method to clear user information from app
+    clearUserInformation: {
+        value: function() {
+            localStorage.removeItem("token")
+            this.setState({
+                userToken: "",
+                user: {
+                    first_name: "",
+                    last_name: "",
+                    email: "",
+                    username: "",
+                    isEmployer: false,
+                    isCrew: false
+                },
+                crew_member: {
+                    roles: [],
+                    city: "",
+                    state: "",
+                    willTravel: false,
+                },
+                employer: {
+                    organization_name: ""
+                },
+            })
+        }
+    },
+
+    setUserState: {
+        value: function(userObj) {
+            this.setState({user: userObj})
+        }
+    },
+
+    setProfileState: {
+        value: function(profileData, profileType) {
+            this.setState({
+                [profileType]: profileData
             })
         }
     }

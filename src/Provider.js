@@ -30,14 +30,14 @@ export class Provider extends Component {
             isEmployer: false,
             isCrew: false
         },
-        crewMember: {
+        crew_member: {
             roles: [],
             city: "",
             state: "",
             willTravel: false,
         },
         employer: {
-            organization: ""
+            organization_name: ""
         },
 
         genres: [],
@@ -83,6 +83,9 @@ export class Provider extends Component {
     logOut = UserManager.logOut.bind(this)
     isLoggedIn = UserManager.isLoggedIn.bind(this)
     loadUserInformation = UserManager.loadUserInformation.bind(this)
+    setUserState = UserManager.setUserState.bind(this)
+    setProfileState = UserManager.setProfileState.bind(this)
+    clearUserInformation = UserManager.clearUserInformation.bind(this)
 
 
     // event manager methods
