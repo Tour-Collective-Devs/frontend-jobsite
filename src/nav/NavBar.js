@@ -25,9 +25,14 @@ class NavBar extends Component {
                             <li>
                                 <a href="https://www.tourcollective.co/" target="blank">My TC</a>
                             </li>
-                            <li>
-                                <Link to="/jobs">Find a Job</Link>
-                            </li>
+                            {!context.state.user.is_employer ?
+                                <li>
+                                    <Link to="/jobs">Find a Job</Link>
+                                </li>
+                                :
+                                null
+                            }
+
                             <li>
                                 <Link to="/contact">Contact</Link>
                             </li>
@@ -42,9 +47,14 @@ class NavBar extends Component {
                                         <li>
                                             <Link to="/profile">My Profile</Link>
                                         </li>
-                                        <li>
-                                            <Link to="/create-event">Post a Job</Link>
-                                        </li>
+                                        {context.state.user.is_employer ?
+                                            <li>
+                                                <Link to="/create-event">Post a Job</Link>
+                                            </li>
+                                            :
+                                            null
+                                        }
+
                                         <li>
                                             <a onClick={context.logOut}>Logout</a>
                                         </li>

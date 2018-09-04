@@ -27,8 +27,8 @@ export class Provider extends Component {
             last_name: "",
             email: "",
             username: "",
-            isEmployer: false,
-            isCrew: false
+            is_employer: false,
+            is_crew_member: false
         },
         crew_member: {
             roles: [],
