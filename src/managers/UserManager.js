@@ -18,8 +18,7 @@ const UserManager = Object.create(null, {
                 first_name: userToRegister.first_name,
                 last_name: userToRegister.last_name,
                 email: userToRegister.email,
-                password1: userToRegister.password1,
-                password2: userToRegister.password2,
+                password: userToRegister.password1,
                 username: userToRegister.username,
                 is_employer: userToRegister.is_employer,
                 is_crew_member: userToRegister.is_crew_member,
@@ -28,9 +27,9 @@ const UserManager = Object.create(null, {
                 .then(r => r.json())
                 .then(response => {
                     // check to see if response is the key, indicated a sucsessful registration
-                    if (response.key) {
+                    if (response.token) {
                         // get the token
-                        const token = response.key
+                        const token = response.token
                         // set token in state and local storage to be used in future requests to api
                         this.setState({ userToken: token })
                         localStorage.setItem('token', token)
@@ -78,8 +77,8 @@ const UserManager = Object.create(null, {
             APIManager.logInUser(userToLogIn)
                 .then(r => r.json())
                 .then(response => {
-                    if (response.key) {
-                        const token = response.key
+                    if (response.token) {
+                        const token = response.token
                         console.log(response)
                         this.setState({ userToken: token })
                         localStorage.setItem('token', token)
@@ -98,11 +97,7 @@ const UserManager = Object.create(null, {
     logOut: {
         value: function () {
             console.log('logging out')
-            APIManager.logOutUser()
-                .then(r => r.json())
-                .then(response => {
-                    this.clearUserInformation()
-                })
+            this.clearUserInformation()
         }
     },
 
