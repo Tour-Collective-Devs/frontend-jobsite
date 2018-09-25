@@ -25,7 +25,7 @@ const APIManager = Object.create(null, {
     // function to post a user object to the registration endpoint of the api
     registerNewUser: {
         value: function (userData) {
-            return fetch(`${url}user/registration/`, {
+            return fetch(`${url}auth/register/`, {
                 method: 'POST',
                 body: JSON.stringify(userData),
                 headers: this.basicJsonHeader
@@ -49,7 +49,7 @@ const APIManager = Object.create(null, {
 
     logInUser: {
         value: function (userData) {
-            return fetch(`${url}user-auth/login/`, {
+            return fetch(`${url}auth/login/`, {
                 method: 'POST',
                 body: JSON.stringify(userData),
                 headers: this.basicJsonHeader
