@@ -126,13 +126,7 @@ const UserManager = Object.create(null, {
                         this.setProfileState(employer, 'employer')
                     })
                 } else {
-                    APIManager.getCrewInformation()
-                    .then(r => r.json())
-                    .then(crewInfo => {
-                        console.log(crewInfo)
-                        const crew = crewInfo[0]
-                        this.setProfileState(crew, 'crew_member')
-                    })
+                    this.getCrewProfile()
                 }
             })
         }
@@ -175,6 +169,28 @@ const UserManager = Object.create(null, {
         value: function(profileData, profileType) {
             this.setState({
                 [profileType]: profileData
+            })
+        }
+    },
+
+    addCrewMemberRole: {
+        value: function(data) {
+            APIManager.post(data, 'crew_member_role')
+            .then(r => r.json())
+            .then(response => {
+                this.getCrewProfile()
+            })
+        }
+    },
+
+    getCrewProfile: {
+        value: function() {
+            APIManager.getCrewInformation()
+            .then(r => r.json())
+            .then(crewInfo => {
+                console.log(crewInfo)
+                const crew = crewInfo[0]
+                this.setProfileState(crew, 'crew_member')
             })
         }
     }

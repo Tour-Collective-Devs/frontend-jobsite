@@ -86,6 +86,8 @@ export class Provider extends Component {
     setUserState = UserManager.setUserState.bind(this)
     setProfileState = UserManager.setProfileState.bind(this)
     clearUserInformation = UserManager.clearUserInformation.bind(this)
+    getCrewProfile = UserManager.getCrewProfile.bind(this)
+    addCrewMemberRole = UserManager.addCrewMemberRole.bind(this)
 
 
     // event manager methods
@@ -110,8 +112,10 @@ export class Provider extends Component {
                 isLoggedIn: this.isLoggedIn,
                 loadUserInformation: this.loadUserInformation,
                 redirect: this.redirect,
+                addCrewMemberRole: this.addCrewMemberRole,
                 // pass event manager methods
                 createEvent: this.createEvent,
+
 
             }}>
                 {this.props.children}

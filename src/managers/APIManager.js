@@ -120,6 +120,18 @@ const APIManager = Object.create(null, {
                 body: JSON.stringify(event)
             })
         }
+    },
+    post: {
+        value: function(data, collection) {
+            return fetch(`${url}${collection}/`, {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify(data)
+            })
+        }
     }
 
 })
