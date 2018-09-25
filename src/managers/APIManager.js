@@ -120,6 +120,18 @@ const APIManager = Object.create(null, {
                 body: JSON.stringify(event)
             })
         }
+    },
+
+    getCollection: {
+        value: function (collection, query) {
+            return fetch(`${url}${collection}/?${query}`, {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                },
+            })
+        }
     }
 
 })

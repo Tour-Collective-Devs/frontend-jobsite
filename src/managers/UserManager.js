@@ -119,6 +119,7 @@ const UserManager = Object.create(null, {
                 const user = userInfo[0]
                 this.setUserState(user)
                 if (user.is_employer) {
+                    this.getEmployerEvents()
                     APIManager.getEmployerInformation()
                     .then(r => r.json())
                     .then(employerInfo => {

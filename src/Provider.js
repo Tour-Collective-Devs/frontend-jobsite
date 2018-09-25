@@ -41,7 +41,8 @@ export class Provider extends Component {
         },
 
         genres: [],
-        roles: []
+        roles: [],
+        employer_events: [],
     }
 
 
@@ -90,6 +91,7 @@ export class Provider extends Component {
 
     // event manager methods
     createEvent = EventManager.createEvent.bind(this)
+    getEmployerEvents = EventManager.getEmployerEvents.bind(this)
 
 
     /*
