@@ -6,9 +6,8 @@ Tour Collective is a place to find the best of the best the touring community ha
 ##### Be able to:
 
 1. post jobs
-1. see jobs on a message board
-1. apply with profile that sends an email to employer
-1. handle monetary requirements via third-party
+1. see jobs & search jobs on a message board
+1. apply with profile that sends an email to employer with the top 5 highest rated applicants
 1. let employers see crew member profiles
 
 ### Stretch Goals

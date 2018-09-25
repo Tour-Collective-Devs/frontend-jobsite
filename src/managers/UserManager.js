@@ -120,6 +120,7 @@ const UserManager = Object.create(null, {
             APIManager.getUserInformation()
             .then(r => r.json())
             .then(userInfo => {
+                console.log(userInfo)
                 const user = userInfo[0]
                 this.setUserState(user)
                 if (user.is_employer) {
@@ -133,6 +134,7 @@ const UserManager = Object.create(null, {
                     APIManager.getCrewInformation()
                     .then(r => r.json())
                     .then(crewInfo => {
+                        console.log(crewInfo)
                         const crew = crewInfo[0]
                         this.setProfileState(crew, 'crew_member')
                     })
