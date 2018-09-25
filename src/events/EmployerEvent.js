@@ -16,6 +16,7 @@ class EmployerEvent extends Component {
                     <p>{this.props.event.name}</p>
                     {/* button to toggle state of showing applicants or not */}
                     <button onClick={() => this.setState({ showApplicants: !this.state.showApplicants })}>Toggle Applicants</button>
+                    <button onClick={this.props.setEventDetail}>show detail</button>
                     {/* if the user wants to see applicants render an applicants component passing in this events applicants */}
                     {this.state.showApplicants ?
                         <EmployerEventApplicants
