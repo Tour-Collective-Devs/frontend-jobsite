@@ -118,13 +118,21 @@ const UserManager = Object.create(null, {
                 console.log(userInfo)
                 const user = userInfo[0]
                 this.setUserState(user)
+
+                // if the user is an employer
+                // get their information
                 if (user.is_employer) {
+                    // get their events and set them in state
+                    this.getEmployerEvents()
+                    // get their profile information from the api
                     APIManager.getEmployerInformation()
                     .then(r => r.json())
                     .then(employerInfo => {
                         const employer = employerInfo[0]
                         this.setProfileState(employer, 'employer')
                     })
+
+                // else get crew member information
                 } else {
                     this.getCrewProfile()
                 }

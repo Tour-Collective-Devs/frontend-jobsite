@@ -102,6 +102,7 @@ const APIManager = Object.create(null, {
             return fetch(`${url}genre/`)
         }
     },
+
     getRoles: {
         value: function () {
             return fetch(`${url}role/`)
@@ -121,6 +122,7 @@ const APIManager = Object.create(null, {
             })
         }
     },
+
     post: {
         value: function(data, collection) {
             return fetch(`${url}${collection}/`, {
@@ -132,8 +134,19 @@ const APIManager = Object.create(null, {
                 body: JSON.stringify(data)
             })
         }
-    }
+    },
 
+    getCollection: {
+        value: function (collection, query) {
+            return fetch(`${url}${collection}/?${query}`, {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                },
+            })
+        }
+    }
 })
 
 export default APIManager

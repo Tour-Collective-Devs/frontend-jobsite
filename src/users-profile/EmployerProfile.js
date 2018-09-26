@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Context } from '../Provider';
+import EmployerEvents from '../events/EmployerEvents';
 
 
 
@@ -16,6 +17,8 @@ class EmployerProfile extends Component {
                         <div>Company: {context.state.employer.organization_name}</div>
                         <div>Username: {context.state.user.username}</div>
                         <div>Email: {context.state.user.email}</div>
+
+                        <EmployerEvents />
 
                     </React.Fragment>
                 )}
