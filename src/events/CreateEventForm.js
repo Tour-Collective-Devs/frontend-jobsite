@@ -16,7 +16,27 @@ class CreateEventForm extends Component {
             show_count: "",
             required_experience: "",
             pay_type: "day",
-        }
+        },
+        formValid: false,
+    }
+
+    isFormValid = () => {
+        if (this.state.event.name === '') return false
+        if (this.state.event.description === '') return false
+        if (this.state.event.notes === '') return false
+        if (this.state.event.role === '') return false
+        if (this.state.event.start_date === '') return false
+        if (this.state.event.end_date === '') return false
+        if (this.state.event.total_pay === '') return false
+        if (this.state.event.show_count === '') return false
+        if (this.state.event.required_experience === '') return false
+        if (this.state.event.pay_type === '') return false
+        if (this.state.event.genres.length === 0) return false
+        return true
+    }
+
+    validateForm = () => {
+        this.isFormValid() ? this.setState({formValid: true}) : this.setState({formValid: false})
     }
 
 
@@ -29,20 +49,26 @@ class CreateEventForm extends Component {
     updateStringFields = (evt) => {
         let state = Object.assign({}, this.state)
         state.event[evt.target.name] = evt.target.value
-        this.setState(state)
+        this.setState(state, () => {
+            this.validateForm()
+        })
     }
 
     addGenre = (url) => {
         let state = Object.assign({}, this.state)
         state.event.genres.push(url)
-        this.setState(state)
+        this.setState(state, () => {
+            this.validateForm()
+        })
     }
 
     removeGenre = (url) => {
         let state = Object.assign({}, this.state)
         const index = state.event.genres.findIndex(item => item === url)
         state.event.genres.splice(index, 1)
-        this.setState(state)
+        this.setState(state, () => {
+            this.validateForm()
+        })
     }
 
     checkbox = (evt) => {
@@ -84,7 +110,7 @@ class CreateEventForm extends Component {
                         </React.Fragment>
                     ))}
 
-                    <button type="submit">Create Event</button>
+                    <button type="submit" disabled={!this.state.formValid}>Create Event</button>
                 </form>
             </React.Fragment>
         )
