@@ -96,8 +96,8 @@ const UserManager = Object.create(null, {
     // method to log the user out
     logOut: {
         value: function () {
-            console.log('logging out')
             this.clearUserInformation()
+            history.push('/')
         }
     },
 
