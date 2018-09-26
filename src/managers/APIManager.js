@@ -76,6 +76,7 @@ const APIManager = Object.create(null, {
             })
         }
     },
+
     getCrewInformation: {
         value: function () {
             return fetch(`${url}crew_member/`, {
@@ -86,6 +87,7 @@ const APIManager = Object.create(null, {
             })
         }
     },
+
     getEmployerInformation: {
         value: function () {
             return fetch(`${url}employer/`, {
@@ -102,6 +104,7 @@ const APIManager = Object.create(null, {
             return fetch(`${url}genre/`)
         }
     },
+
     getRoles: {
         value: function () {
             return fetch(`${url}role/`)
@@ -122,6 +125,19 @@ const APIManager = Object.create(null, {
         }
     },
 
+    post: {
+        value: function(data, collection) {
+            return fetch(`${url}${collection}/`, {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify(data)
+            })
+        }
+    },
+
     getCollection: {
         value: function (collection, query) {
             return fetch(`${url}${collection}/?${query}`, {
@@ -133,7 +149,6 @@ const APIManager = Object.create(null, {
             })
         }
     }
-
 })
 
 export default APIManager

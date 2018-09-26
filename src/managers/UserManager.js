@@ -134,13 +134,7 @@ const UserManager = Object.create(null, {
 
                 // else get crew member information
                 } else {
-                    APIManager.getCrewInformation()
-                    .then(r => r.json())
-                    .then(crewInfo => {
-                        console.log(crewInfo)
-                        const crew = crewInfo[0]
-                        this.setProfileState(crew, 'crew_member')
-                    })
+                    this.getCrewProfile()
                 }
             })
         }
@@ -183,6 +177,40 @@ const UserManager = Object.create(null, {
         value: function(profileData, profileType) {
             this.setState({
                 [profileType]: profileData
+            })
+        }
+    },
+
+    addCrewMemberRole: {
+        value: function(data) {
+            APIManager.post(data, 'crew_member_role')
+            .then(r => r.json())
+            .then(response => {
+                this.getCrewProfile()
+            })
+        }
+    },
+
+    getCrewProfile: {
+        value: function() {
+            APIManager.getCrewInformation()
+            .then(r => r.json())
+            .then(crewInfo => {
+                const crew = crewInfo[0]
+                this.setProfileState(crew, 'crew_member')
+                this.getCrewRoles(crew.id)
+            })
+        }
+    },
+
+    getCrewRoles: {
+        value: function(id) {
+            APIManager.getCollection('crew_member_role', `crew_member=${id}`)
+            .then(r => r.json())
+            .then(roles => {
+                this.setState({
+                    crew_member_roles: roles
+                })
             })
         }
     }
