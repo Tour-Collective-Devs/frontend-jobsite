@@ -19,6 +19,9 @@ class CrewProfile extends Component {
                         <div>Email: {context.state.user.email}</div>
                         <div>City: {context.state.crew_member.city}</div>
                         <div>State: {context.state.crew_member.state}</div>
+                        <div>Willing to Travel: {context.state.crew_member.will_travel ? 'Yes' : 'No'} </div>
+                        <div>Roles: {context.state.crew_member_roles.map(position => <div key={position.id}>{position.role.name} - {position.years_experience} years</div>)}</div>
+
                         <CrewRoleForm/>
                     </React.Fragment>
                 )}

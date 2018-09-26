@@ -43,6 +43,8 @@ export class Provider extends Component {
         genres: [],
         roles: [],
         employer_events: [],
+        crew_member_roles: []
+
     }
 
 
@@ -89,6 +91,7 @@ export class Provider extends Component {
     clearUserInformation = UserManager.clearUserInformation.bind(this)
     getCrewProfile = UserManager.getCrewProfile.bind(this)
     addCrewMemberRole = UserManager.addCrewMemberRole.bind(this)
+    getCrewRoles = UserManager.getCrewRoles.bind(this)
 
 
     // event manager methods

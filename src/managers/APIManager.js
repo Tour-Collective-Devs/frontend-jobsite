@@ -76,6 +76,7 @@ const APIManager = Object.create(null, {
             })
         }
     },
+
     getCrewInformation: {
         value: function () {
             return fetch(`${url}crew_member/`, {
@@ -86,6 +87,7 @@ const APIManager = Object.create(null, {
             })
         }
     },
+
     getEmployerInformation: {
         value: function () {
             return fetch(`${url}employer/`, {

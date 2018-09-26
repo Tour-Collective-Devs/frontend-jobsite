@@ -196,9 +196,21 @@ const UserManager = Object.create(null, {
             APIManager.getCrewInformation()
             .then(r => r.json())
             .then(crewInfo => {
-                console.log(crewInfo)
                 const crew = crewInfo[0]
                 this.setProfileState(crew, 'crew_member')
+                this.getCrewRoles(crew.id)
+            })
+        }
+    },
+
+    getCrewRoles: {
+        value: function(id) {
+            APIManager.getCollection('crew_member_role', `crew_member=${id}`)
+            .then(r => r.json())
+            .then(roles => {
+                this.setState({
+                    crew_member_roles: roles
+                })
             })
         }
     }

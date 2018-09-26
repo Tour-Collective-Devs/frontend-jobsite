@@ -12,7 +12,7 @@ class UserProfile extends Component {
             <Context.Consumer>
                 {context => (
                     <React.Fragment>
-                        {context.state.user.is_employer ? <EmployerProfile user ={context.state.user}/> : <CrewProfile user ={context.state.user}/>}
+                        {context.state.user.is_employer ? <EmployerProfile user={context.state.user}/> : <CrewProfile user={context.state.user}/>}
                     </React.Fragment>
 
                 )}
@@ -22,3 +22,5 @@ class UserProfile extends Component {
 }
 
 export default UserProfile
+
+
