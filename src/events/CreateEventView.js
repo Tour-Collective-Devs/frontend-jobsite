@@ -15,6 +15,8 @@ class CreateEventView extends Component {
                             <h1>Create an Event</h1>
                             <CreateEventForm 
                                 createEvent={context.createEvent}
+                                roles={context.state.roles}
+                                genres={context.state.genres}
                             />
                         </React.Fragment>
                     )}
