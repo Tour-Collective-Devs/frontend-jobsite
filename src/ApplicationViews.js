@@ -5,6 +5,7 @@ import LandingPage from './home/landingPage';
 import RegisterView from './auth-views/RegisterView';
 import LoginView from './auth-views/LoginView';
 import CreateEventView from './events/CreateEventView';
+import CrewPublicProfile from './public-crew-profile/CrewPublicProfile';
 
 /*
     module: application views
@@ -25,6 +26,7 @@ class ApplicationViews extends Component {
                 <Route exact path="/contact"/>
                 <Route exact path="/login" component={LoginView}/>
                 <Route exact path="/register" component={RegisterView}/>
+                <Route exact path="/crew-profile/:id" component={CrewPublicProfile}/>
             </React.Fragment>
         )
     }
